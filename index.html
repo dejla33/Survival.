@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Survival | Stay Alive</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- AOS CSS for animations -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    [data-theme="light"] body {
+      background-color: #f8f9fa;
+      color: #212529;
+    }
+    [data-theme="dark"] body {
+      background-color: #121212;
+      color: #e0e0e0;
+    }
+    /* Hero */
+    .hero {
+      background-color: #000;
+      color: #fff;
+      padding: 80px 0;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 700;
+    }
+    .hero h3 {
+      color: #ffc107;
+      font-weight: 500;
+    }
+    /* Intro */
+    .intro {
+      padding: 40px 0;
+      text-align: center;
+    }
+    .intro p {
+      font-size: 1.25rem;
+      max-width: 700px;
+      margin: auto;
+      color: #444;
+    }
+    [data-theme="dark"] .intro p {
+      color: #ccc;
+    }
+    /* Slogans */
+    .slogans {
+      background-color: #212529;
+      color: #fff;
+      padding: 40px 0;
+      text-align: center;
+    }
+    [data-theme="light"] .slogans {
+      background-color: #f1f1f1;
+      color: #000;
+    }
+    .slogans li {
+      list-style: none;
+      font-weight: 600;
+      margin-bottom: 12px;
+      font-size: 1.1rem;
+    }
+    /* Threat Cards */
+    .threats .card {
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+      height: 100%;
+      border-width: 2px;
+    }
+    .threats .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 25px rgba(255, 193, 7, 0.7);
+      z-index: 5;
+    }
+    .card-title {
+      font-weight: 700;
+      font-size: 1.3rem;
+    }
+    .card-text {
+      font-size: 0.95rem;
+      color: #444;
+      margin-top: 10px;
+      min-height: 90px;
+    }
+    [data-theme="dark"] .card-text {
+      color: #ccc;
+    }
+    .new-threats-section {
+      margin-top: 60px;
+    }
+    .new-threats-section h2 {
+      margin-bottom: 40px;
+      text-align: center;
+      font-weight: 700;
+      color: #ffbb33;
+      font-size: 2rem;
+    }
+    /* Footer */
+    .footer {
+      background-color: #000;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      margin-top: 60px;
+      font-weight: 600;
+    }
+    [data-theme="light"] .footer {
+      background-color: #f8f9fa;
+      color: #000;
+    }
+    /* Buttons */
+    a.btn {
+      background-color: #ffc107;
+      border: none;
+      color: #000;
+      font-weight: 600;
+    }
+    .language-toggle,
+    .theme-toggle {
+      cursor: pointer;
+      margin-left: 10px;
+      font-weight: 600;
+    }
+    /* Borders for cards */
+    .border-warning {
+      border-color: #ffc107 !important;
+    }
+    .border-info {
+      border-color: #0dcaf0 !important;
+    }
+    .border-danger {
+      border-color: #dc3545 !important;
+    }
+    .border-secondary {
+      border-color: #6c757d !important;
+    }
+    .border-success {
+      border-color: #198754 !important;
+    }
+    .border-primary {
+      border-color: #0d6efd !important;
+    }
+    /* Videos */
+    .videos iframe {
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
+    }
+    .videos iframe:hover {
+      transform: scale(1.05);
+    }
+    /* Quick Tips Carousel */
+    .quick-tips h3 {
+      font-weight: 700;
+      color: #856404;
+    }
+    .quick-tips .carousel-item h5 {
+      font-weight: 600;
+      color: #856404;
+      min-height: 50px;
+      }
+    /* Survival Kit */
+    .survival-kit h2 {
+      font-weight: 700;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .survival-kit p {
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-align: center;
+    }
+    /* Quiz */
+    .quiz {
+      background-color: #212529;
+      color: #fff;
+      padding: 50px 20px;
+      text-align: center;
+      border-radius: 12px;
+      margin: 60px auto;
+      max-width: 600px;
+      box-shadow: 0 8px 25px rgba(255, 193, 7, 0.4);
+    }
+    .quiz h2 {
+      font-weight: 700;
+      margin-bottom: 25px;
+    }
+    .quiz p {
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+    }
+    .quiz button {
+      min-width: 180px;
+      font-weight: 600;
+      font-size: 1rem;
+      margin: 5px;
+      transition: background-color 0.3s ease;
+      color: #000;
+      background-color: #ffc107;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .quiz button:hover {
+      background-color: #e6b106;
+    }
+    .quiz button.correct {
+      background-color: #198754 !important;
+      color: #fff !important;
+      cursor: default;
+    }
+    .quiz button.wrong {
+      background-color: #dc3545 !important;
+      color: #fff !important;
+      cursor: default;
+    }
+    /* Emergency Map */
+    .emergency-map {
+      background-color: #e9ecef;
+      border-radius: 12px;
+      padding: 30px;
+      margin: 50px auto;
+      max-width: 600px;
+      text-align: center;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    }
+    .emergency-map h2 {
+      color: #0d6efd;
+      margin-bottom: 20px;
+    }
+    .emergency-map img {
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(13, 110, 253, 0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Survival</a>
+      <div class="d-flex">
+        <button class="btn btn-outline-light language-toggle" aria-label="Toggle language">FA</button>
+        <button class="btn btn-outline-light theme-toggle" aria-label="Toggle theme">🌓</button>
+      </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-expanded="false">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="Self Defense.html">Self Defense</a></li>
+          <li class="nav-item"><a class="nav-link" href="Fire.html">Fire</a></li>
+          <li class="nav-item"><a class="nav-link" href="Earthquake.html">Earthquake</a></li>
+          <li class="nav-item"><a class="nav-link" href="Airstrike.html">Airstrike</a></li>
+          <li class="nav-item"><a class="nav-link" href="Cyber Attack.html">Cyber Attack</a></li>
+          <li class="nav-item"><a class="nav-link" href="First Aid.html">First Aid</a></li>
+             <li class="nav-item"><a class="nav-link" href="conct.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" data-aos="fade-down">
+    <div class="container">
+      <h1>Survival</h1>
+      <h3>Stay Alive!</h3>
+    </div>
+  </section>
+
+  <!-- Introduction -->
+  <section class="intro" data-aos="fade-up">
+    <div class="container">
+      <h4>Hello! I'm Dejla.</h4>
+      <p>
+        On this website, I aim to help you build strong personal safety and survival skills. Let's learn together how to survive in dangerous situations.
+      </p>
+    </div>
+  </section>
+
+  <!-- Slogans -->
+  <section class="slogans" data-aos="fade-up" data-aos-delay="100">
+    <div class="container">
+      <h5>Our Mottos:</h5>
+      <ul class="mt-3">
+        <li>🚨 Preparedness is the key to survival.</li>
+        <li>🔥 Every moment can be critical.</li>
+        <li>🛡 Awareness is your best defense.</li>
+        <li>🧭 Survival is the art of life in crisis.</li>
+        <li>🌪 Nature or war we stay ready.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Existing Threat Cards -->
+  <section class="threats py-5" data-aos="fade-up" data-aos-delay="200">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card h-100 border-warning">
+            <img src="6003617591609903066.jpg" class="card-img-top img-fluid" alt="Earthquake" />
+            <div class="card-body">
+              <h5 class="card-title text-warning">Syber Attack</h5>
+              <a href="Cyber Attack.html" class="btn btn-warning mt-2">Learn More</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 border-danger">
+            <img src="6003617591609903069.jpg" class="card-img-top img-fluid" alt="Fire" />
+            <div class="card-body">
+              <h5 class="card-title text-danger">First Aid</h5>
+              <a href="First Aid.html" class="btn btn-warning mt-2">Learn More</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 border-info">
+            <img src="home/5998106667532794286 (1).jpg" class="card-img-top img-fluid" alt="Airstrike" />
+            <div class="card-body">
+              <h5 class="card-title text-info">Self Defense</h5>
+              <a href="Self Defense.html" class="btn btn-warning mt-2">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- New Threat Cards -->
+  <section class="new-threats-section" data-aos="fade-up" data-aos-delay="300">
+    <div class="container">
+      <h2>    Important Threats</h2>
+      <div class="row g-4">
+        <!-- Flood -->
+        <div class="col-md-4">
+          <div class="card h-100 border-warning">
+            <div class="card-body">
+              <h5 class="card-title text-warning">Flood</h5>
+              <p class="card-text"><strong>What is it?</strong> A sudden rise of water that can destroy homes and roads.</p>
+              <p class="card-text"><strong>Prevention:</strong> Avoid building near rivers or valleys. Keep important items upstairs. Always have an emergency bag ready.</p>
+              <p class="card-text"><strong>During Flood:</strong> Move to higher ground quickly. Avoid bridges or flooded streets. Turn off electricity.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Dust Storm / Strong Wind -->
+        <div class="col-md-4">
+          <div class="card h-100 border-info">
+            <div class="card-body">
+              <h5 class="card-title text-info">Dust Storm / Strong Wind</h5>
+              <p class="card-text"><strong>What is it?</strong> Very strong winds often carrying dust or rain.</p>
+              <p class="card-text"><strong>Prevention:</strong> Close doors and windows tightly. Bring outdoor objects (pots, tables) inside.</p>
+              <p class="card-text"><strong>During the Event:</strong> Take shelter indoors. Stay away from windows.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Gas Explosion -->
+        <div class="col-md-4">
+          <div class="card h-100 border-danger">
+            <div class="card-body">
+              <h5 class="card-title text-danger">Gas Explosion</h5>
+              <p class="card-text"><strong>What is it?</strong> Gas leaking and exploding in kitchens or other areas.</p>
+              <p class="card-text"><strong>Prevention:</strong> Always turn off the gas valve after use. Take gas smells seriously. Check pipes yearly.</p>
+              <p class="card-text"><strong>During Explosion:</strong> Do not use lighters or electrical switches. Leave immediately and call fire department.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Power Outage / Energy Crisis -->
+        <div class="col-md-4">
+          <div class="card h-100 border-secondary">
+            <div class="card-body">
+              <h5 class="card-title text-secondary">Power Outage / Energy Crisis</h5>
+              <p class="card-text"><strong>What is it?</strong> Long blackout especially at night or winter.</p>
+              <p class="card-text"><strong>Prevention:</strong> Keep flashlights and spare batteries ready. Always charge your mobile. Have blankets and warm clothes.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Health Issues / Epidemics -->
+        <div class="col-md-4">
+          <div class="card h-100 border-success">
+            <div class="card-body">
+              <h5 class="card-title text-success">Health Issues / Epidemics</h5>
+              <p class="card-text"><strong>What is it?</strong> Diseases that spread quickly (like COVID-19 or cholera).</p>
+              <p class="card-text"><strong>Prevention:</strong> Wash hands, wear masks, keep distance from others. Avoid contaminated food and water.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Missing Person / Vulnerable People -->
+        <div class="col-md-4">
+          <div class="card h-100 border-primary">
+            <div class="card-body">
+              <h5 class="card-title text-primary">Missing Person / Vulnerable People</h5>
+              <p class="card-text"><strong>Prevention:</strong> Always keep contact info in child’s bag or clothes. Teach them to seek police or trusted adults.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ <section class="videos text-center py-5 bg-dark text-light" data-aos="fade-up" data-aos-delay="400">
+  <div class="container">
+    <h2 class="mb-4">🎥 Quick Survival Videos</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <video width="100%" height="215" controls>
+          <source src="How_to_Use_a_Fire_Extinguisher_30fc09ad_b931_4eb9_8880_d4e67d47b.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="col-md-4">
+        <video width="100%" height="215" controls>
+          <source src="How_to_Protect_Yourself_During_an_Earthquake_Disasters_86ea45f.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="col-md-4">
+        <video width="100%" height="215" controls>
+          <source src="Children_First_Aid_Choking_Child_part_1_First_Aid_British.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- Quick Survival Tips Carousel -->
+  <section class="quick-tips bg-warning-subtle py-5" data-aos="fade-up" data-aos-delay="500">
+    <div class="container">
+      <h2 class="mb-4 text-center fw-bold" style="color:#856404;">Quick Survival Tips</h2>
+      <div id="tipsCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active text-center">
+            <h5>Keep Calm and Think Clearly</h5>
+            <p>In emergencies, staying calm helps you make better decisions.</p>
+          </div>
+          <div class="carousel-item text-center">
+            <h5>Always Have a Charged Phone</h5>
+            <p>Keep your mobile fully charged and carry a power bank.</p>
+          </div>
+          <div class="carousel-item text-center">
+            <h5>Prepare an Emergency Bag</h5>
+            <p>Include water, flashlight, first aid, food, and important documents.</p>
+          </div>
+          <div class="carousel-item text-center">
+            <h5>Know Your Exits</h5>
+            <p>Learn emergency exits and evacuation routes wherever you are.</p>
+          </div>
+          <div class="carousel-item text-center">
+            <h5>Listen to Official Instructions</h5>
+            <p>Follow local authority announcements carefully.</p>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#tipsCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#tipsCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Survival Kit Section -->
+  <section class="survival-kit py-5" data-aos="fade-up" data-aos-delay="600">
+    <div class="container">
+      <h2>Survival Kit Essentials</h2>
+      <p>Always keep these items ready for emergencies:</p>
+      <ul class="list-group list-group-flush mx-auto" style="max-width: 400px;">
+        <li class="list-group-item">💧 Water bottles (at least 3 days supply)</li>
+        <li class="list-group-item">🔦 Flashlight with extra batteries</li>
+        <li class="list-group-item">🍫 Non-perishable food items</li>
+        <li class="list-group-item">🩹 First aid kit</li>
+        <li class="list-group-item">📱 Fully charged mobile phone & power bank</li>
+        <li class="list-group-item">🧥 Warm clothes and blankets</li>
+        <li class="list-group-item">📜 Important documents in waterproof bag</li>
+        <li class="list-group-item">🛠️ Multi-tool or pocket knife</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Quick Quiz Section -->
+  <section class="quiz" data-aos="fade-up" data-aos-delay="700">
+    <h2>Test Your Survival Knowledge</h2>
+    <p>What should you do immediately after an earthquake starts?</p>
+    <div>
+      <button class="btn answer-btn" data-correct="false">Run outside quickly</button>
+      <button class="btn answer-btn" data-correct="true">Drop, cover, and hold on</button>
+      <button class="btn answer-btn" data-correct="false">Stand near windows</button>
+      <button class="btn answer-btn" data-correct="false">Call your friends</button>
+    </div>
+  </section>
+
+  <!-- Emergency Map Section -->
+  <section class="emergency-map" data-aos="fade-up" data-aos-delay="800">
+   
+    <img src="6291689453403621765 (1).jpg" alt="Map of Emergency Shelters in Afghanistan" />
+  
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Survival. All rights reserved. Designed by Dejla.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- AOS JS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
+    // Quiz interaction
+    const buttons = document.querySelectorAll('.answer-btn');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (btn.getAttribute('data-correct') === 'true') {
+          btn.classList.add('correct');
+          alert('Correct! Drop, cover, and hold on during an earthquake.');
+        } else {
+          btn.classList.add('wrong');
+          alert('Wrong answer, try again!');
+        }
+        // Disable all buttons after answer
+        buttons.forEach(b => b.disabled = true);
+      });
+    });
+
+    // Language and theme toggle (simple example)
+    const langBtn = document.querySelector('.language-toggle');
+    const themeBtn = document.querySelector('.theme-toggle');
+    langBtn.addEventListener('click', () => {
+      if (langBtn.textContent === 'FA') {
+        langBtn.textContent = 'EN';
+        alert('Change to English version coming soon!');
+        // You can add logic to switch language here
+      } else {
+        langBtn.textContent = 'FA';
+        alert('نسخه فارسی به زودی اضافه می‌شود!');
+      }
+    });
+    themeBtn.addEventListener('click', () => {
+      const html = document.documentElement;
+      if (html.getAttribute('data-theme') === 'light') {
+        html.setAttribute('data-theme', 'dark');
+        themeBtn.textContent = '☀️';
+      } else {
+        html.setAttribute('data-theme', 'light');
+        themeBtn.textContent = '🌓';
+      }
+    });
+  </script>
+</body>
+</html>

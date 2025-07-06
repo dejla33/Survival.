@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Earthquake Survival Guide</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+<style>
+  /* پایه و تنظیمات عمومی */
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #121212;
+    color: #ECECEC;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  body.light-mode {
+    background-color: #f8f9fa;
+    color: #212529;
+  }
+
+  /* نوار ناوبری */
+  nav.navbar {
+    background-color: #222;
+    transition: background-color 0.3s;
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  body.light-mode nav.navbar {
+    background-color: #e9ecef;
+  }
+  .navbar-brand {
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: #FFD700;
+    user-select: none;
+  }
+  body.light-mode .navbar-brand {
+    color: #b8860b;
+  }
+
+  /* دکمه حالت تاریک/روشن */
+  .mode-btn {
+    border: 1.5px solid #FFD700;
+    background: transparent;
+    color: #FFD700;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .mode-btn:hover {
+    background-color: #FFD700;
+    color: #121212;
+  }
+  body.light-mode .mode-btn {
+    border-color: #b8860b;
+    color: #b8860b;
+  }
+  body.light-mode .mode-btn:hover {
+    background-color: #b8860b;
+    color: #f8f9fa;
+  }
+
+  /* هدر (Hero Section) */
+  header {
+    height: 60vh;
+    background: url('https://images.unsplash.com/photo-1605811500457-2ebfa3c5eb3f?auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+    padding: 0 1rem;
+  }
+  header h1 {
+    background: rgba(0,0,0,0.6);
+    padding: 20px 30px;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: #FFD700;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 900px;
+  }
+  body.light-mode header {
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+  }
+  body.light-mode header h1 {
+    background: rgba(255, 255, 255, 0.8);
+    color: #b8860b;
+  }
+
+  /* بخش‌ها */
+  section {
+    padding: 3rem 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .section-title {
+    font-size: 2.2rem;
+    color: #FFD700;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  body.light-mode .section-title {
+    color: #b8860b;
+  }
+
+  /* باکس محتوا با تصویر کنار متن */
+  .content-box {
+    background: #1E1E1E;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 3rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+    transition: background-color 0.3s;
+  }
+  body.light-mode .content-box {
+    background: #fff;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+  }
+ .content-box {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex-direction: row; /* دسکتاپ: عکس و متن کنار هم */
+}
+
+.content-box img {
+  width: 300px;       /* اندازه متوسط عکس در دسکتاپ */
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.content-text {
+  flex: 1;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* واکنش‌گرایی برای موبایل */
+@media (max-width: 767px) {
+  .content-box {
+    flex-direction: column; /* موبایل: عمودی، عکس بالا */
+  }
+  .content-box img {
+    width: 100%;         /* عرض کامل عکس */
+    max-height: 250px;   /* محدودیت ارتفاع */
+    margin-bottom: 1rem; /* فاصله زیر عکس */
+  }
+  .content-text {
+    width: 100%;
+  }
+}
+  .content-text ul li {
+    margin-bottom: 0.8rem;
+    position: relative;
+    list-style: none;
+    padding-left: 1.5rem;
+    color: #d0f0c0;
+  }
+  .content-text ul li::before {
+    content: '✔';
+    position: absolute;
+    left: 0;
+    color: #7CFC00;
+  }
+  body.light-mode .content-text ul li {
+    color: #3a6b35;
+  }
+  body.light-mode .content-text ul li::before {
+    color: #228B22;
+  }
+
+  /* پاورقی */
+  footer {
+    background: #1B1B1B;
+    text-align: center;
+    padding: 1rem;
+    color: #888;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+  }
+  body.light-mode footer {
+    background: #e9ecef;
+    color: #555;
+  }
+  /* واکنشگرایی */
+  @media (max-width: 767px) {
+    .content-box {
+      flex-direction: column;
+    }
+    .content-box img, .content-text {
+      flex: 1 1 100%;
+      max-height: none;
+    }
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-brand">Earthquake Guide</div>
+  <button id="modeBtn" class="mode-btn" aria-label="Toggle Dark/Light Mode">🌙</button>
+  <a href="index.html" class="btn btn-outline-light rounded-pill px-4 py-2 mt-3">
+  ⬅ Back to Home
+</a>
+</nav>
+
+<header>
+  <h1>Earthquake Survival Guide</h1>
+</header>
+
+<section>
+  <h2 class="section-title">1. What Is an Earthquake?</h2>
+  <div class="content-box">
+    <img src="Earthquake/5831063406432597378.jpg" alt="Earthquake damage" />
+    <div class="content-text">
+      <p>Earthquakes are sudden ground movements caused by shifting tectonic plates, releasing seismic energy. They may cause structural damage, injuries, or fatalities.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">2. Before an Earthquake</h2>
+  <div class="content-box">
+    <img src="Earthquake/5998027743213763092.jpg" alt="Emergency kit" />
+    <div class="content-text">
+      <ul>
+        <li>Secure heavy furniture to walls with brackets.</li>
+        <li>Identify safe spots like under sturdy tables or against interior walls.</li>
+        <li>Create and practice "Drop, Cover & Hold On" drills.</li>
+        <li>Prepare an emergency kit (water, food, meds, flashlight, documents).</li>
+        <li>Set family meeting points inside and outside.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">3. During an Earthquake</h2>
+  <div class="content-box">
+    <img src="Earthquake/5998043621707856304.jpg" alt="Taking cover during quake" />
+    <div class="content-text">
+      <ul>
+        <li>Drop to the ground immediately.</li>
+        <li>Take cover under sturdy furniture.</li>
+        <li>Hold on tightly and protect your head.</li>
+        <li>Stay indoors and avoid windows and glass.</li>
+        <li>If outside, move to open spaces away from buildings.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">4. After an Earthquake</h2>
+  <div class="content-box">
+    <img src="Earthquake/6000266490621835419.jpg" alt="Rescue efforts after quake" />
+    <div class="content-text">
+      <ul>
+        <li>Check for injuries and provide first aid.</li>
+        <li>Be alert for aftershocks.</li>
+        <li>Turn off utilities if damaged (gas, electricity).</li>
+        <li>Avoid damaged buildings and stay safe outdoors.</li>
+        <li>Use radio or battery-powered devices for updates.</li>
+        <li>Help neighbors if it is safe.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">5. Emergency Kit Checklist</h2>
+  <div class="content-box">
+    <img src="Earthquake/5997899800432982509.jpg" alt="Emergency Supplies" />
+    <div class="content-text">
+      <ul>
+        <li>Water: 1 gallon per person per day.</li>
+        <li>Non-perishable food for at least 3 days.</li>
+        <li>Flashlight and spare batteries.</li>
+        <li>First-aid supplies and medicines.</li>
+        <li>Whistle to signal for help.</li>
+        <li>Portable phone charger and extra batteries.</li>
+        <li>Important documents in waterproof bag.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 Earthquake Safety. Stay Prepared. Stay Safe.
+</footer>
+
+<script>
+  const modeBtn = document.getElementById('modeBtn');
+  modeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('light-mode');
+    modeBtn.textContent = document.body.classList.contains('light-mode') ? '☀️' : '🌙';
+  });
+</script>
+
+</body>
+</html>

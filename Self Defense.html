@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Self Defense Tips | DefenseTips</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  
+  <style>
+    /* Base styles */
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      color: #212529;
+      background-color: #f8f9fa;
+      transition: background-color 0.5s ease, color 0.5s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    /* Background image container */
+
+    /* Dark mode background brightness */
+    body.dark-mode .bg-image {
+      filter: brightness(0.3);
+    }
+    
+    /* Navbar */
+    .navbar {
+      background-color: rgba(33, 37, 41, 0.85);
+      backdrop-filter: saturate(180%) blur(20px);
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.25);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      transition: background-color 0.5s ease;
+    }
+    
+    body.dark-mode .navbar {
+      background-color: rgba(18, 18, 18, 0.9);
+    }
+    
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.7rem;
+      color: #dc3545 !important;
+      user-select: none;
+    }
+    
+    /* Dark mode button */
+    #modeBtn {
+      font-size: 1.5rem;
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 2px solid #dc3545;
+      color: #dc3545;
+      background-color: transparent;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+    
+    #modeBtn:hover {
+      background-color: #dc3545;
+      color: white;
+    }
+    
+    /* Main content */
+    main.container {
+      max-width: 900px;
+      margin: 0 auto;
+      margin-top: 100px; /* to avoid being behind navbar */
+      margin-bottom: 3rem;
+      background: rgba(255,255,255,0.85);
+      padding: 30px 40px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgb(0 0 0 / 0.15);
+      user-select: text;
+      transition: background 0.5s ease, color 0.5s ease;
+    }
+    
+    /* Dark mode main background */
+    body.dark-mode main.container {
+      background: rgba(28, 28, 28, 0.85);
+      color: #eee;
+      box-shadow: 0 8px 30px rgb(255 255 255 / 0.15);
+    }
+    
+    /* Section title */
+    .section-title {
+      font-weight: 700;
+      font-size: 2.8rem;
+      text-align: center;
+      color: #dc3545;
+      margin-bottom: 2.5rem;
+      user-select: none;
+      text-shadow: 1px 1px 5px rgba(220,53,69,0.6);
+    }
+    
+    body.dark-mode .section-title {
+      color: #ff6b6b;
+      text-shadow: 1px 1px 8px rgba(255,107,107,0.8);
+    }
+    
+    /* Highlight headers */
+    .highlight {
+      color: #dc3545;
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      border-bottom: 3px solid #dc3545;
+      padding-bottom: 5px;
+      user-select: none;
+    }
+    body.dark-mode .highlight {
+      color: #ff6b6b;
+      border-bottom-color: #ff6b6b;
+    }
+    
+    /* Lists */
+    ul {
+      padding-left: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    ul li {
+      font-size: 1.15rem;
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      user-select: none;
+    }
+    
+    ul li span.emoji {
+      font-size: 1.4rem;
+    }
+    
+    /* Paragraphs */
+    p {
+      font-size: 1.15rem;
+      line-height: 1.6;
+      user-select: text;
+    }
+    
+    /* Motivational motto */
+    .motto {
+      font-style: italic;
+      font-size: 1.3rem;
+      text-align: center;
+      color: #dc3545;
+      font-weight: 600;
+      margin-top: 2rem;
+      user-select: none;
+      text-shadow: 1px 1px 4px rgba(220,53,69,0.7);
+    }
+    body.dark-mode .motto {
+      color: #ff6b6b;
+      text-shadow: 1px 1px 6px rgba(255,107,107,0.8);
+    }
+    
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 1rem 0;
+      background-color: rgba(33, 37, 41, 0.9);
+      color: #ccc;
+      user-select: none;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+      box-shadow: 0 -3px 8px rgb(0 0 0 / 0.25);
+      transition: background-color 0.5s ease;
+    }
+    body.dark-mode footer {
+      background-color: rgba(18, 18, 18, 0.9);
+      color: #aaa;
+    }
+    
+    /* Responsive */
+    @media (max-width: 576px) {
+      main.container {
+        padding: 20px 15px;
+        margin-top: 90px;
+      }
+      .section-title {
+        font-size: 2rem;
+      }
+      .highlight {
+        font-size: 1.3rem;
+      }
+      ul li {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-image" aria-hidden="true"></div>
+
+ <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
+  <div class="container-fluid d-flex justify-content-between align-items-center w-100">
+    
+    <!-- سمت چپ: لوگو -->
+    <a class="navbar-brand fw-bold" href="#">DefenseTips</a>
+
+    <!-- وسط: دکمه حالت شب/روز -->
+    <div class="text-center mx-auto">
+      <button id="modeBtn" class="btn btn-sm btn-outline-light rounded-pill" aria-label="Toggle dark mode">🌙</button>
+    </div>
+
+    <!-- سمت راست: دکمه برگشت به خانه -->
+    <a href="index.html" class="btn btn-outline-light rounded-pill px-4 py-2">
+      ⬅ Back to Home
+    </a>
+  </div>
+</nav>
+
+  <!-- Main Content -->
+  <main class="container" role="main" tabindex="-1">
+    <h1 class="section-title">🛡️ Self-Defense Tips</h1>
+
+    <section aria-labelledby="whyImportant">
+      <h2 id="whyImportant" class="highlight">Why Is Self-Defense Important?</h2>
+      <p>Self-defense empowers you to protect yourself, avoid danger, and respond effectively in emergencies. It builds confidence, awareness, and peace of mind in everyday life.</p>
+    </section>
+
+    <section aria-labelledby="vulnerableAreas">
+      <h2 id="vulnerableAreas" class="highlight">Top 4 Vulnerable Areas</h2>
+      <ul>
+        <li><span class="emoji" aria-hidden="true">👁️</span> Eyes</li>
+        <li><span class="emoji" aria-hidden="true">👃</span> Throat</li>
+        <li><span class="emoji" aria-hidden="true">🦵</span> Knees</li>
+        <li><span class="emoji" aria-hidden="true">🚨</span> Groin</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="tools">
+      <h2 id="tools" class="highlight">Common Self-Defense Tools</h2>
+      <ul>
+        <li><span class="emoji" aria-hidden="true">🌶️</span> Pepper spray</li>
+        <li><span class="emoji" aria-hidden="true">🔊</span> Alarm keychain</li>
+        <li><span class="emoji" aria-hidden="true">🖊️</span> Keys or a pen</li>
+        <li><span class="emoji" aria-hidden="true">🛡️</span> Tactical flashlight</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="ifThreatened">
+      <h2 id="ifThreatened" class="highlight">If You Feel Threatened...</h2>
+      <ul>
+        <li>If someone is following you on the street, try to reach a crowded area or a public place.</li>
+        <li>If you're alone in a taxi or rideshare, sit in the back seat and keep your phone handy.</li>
+        <li>If someone knocks at your door late at night, do not open without verifying identity and keep a phone nearby.</li>
+        <li>Trust your instincts—if something feels wrong, act immediately.</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="advancedTips">
+      <h2 id="advancedTips" class="highlight">Advanced Tips for Personal Safety</h2>
+      <ul>
+        <li>Practice situational awareness: stay alert to your surroundings at all times.</li>
+        <li>Learn basic self-defense moves and consider joining a class.</li>
+        <li>Use well-lit routes and avoid shortcuts through isolated areas.</li>
+        <li>Keep emergency numbers saved and accessible on your phone.</li>
+      </ul>
+    </section>
+
+    <p class="motto">"Be aware. Be ready. Stay safe."</p>
+  </main>
+
+
+
+  <!-- Scripts -->
+  <script>
+    const modeBtn = document.getElementById("modeBtn");
+    modeBtn.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      if(document.body.classList.contains("dark-mode")) {
+        modeBtn.textContent = "☀️";
+        modeBtn.setAttribute("aria-label", "Switch to light mode");
+      } else {
+        modeBtn.textContent = "🌙";
+        modeBtn.setAttribute("aria-label", "Switch to dark mode");
+      }
+    });
+  </script>
+  
+</body>
+</html>

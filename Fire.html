@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fire Safety Guide</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #f8f9fa;
+      color: #212529;
+      font-family: 'Segoe UI', sans-serif;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    body.dark-mode {
+      background-color: #121212;
+      color: #f8f9fa;
+    }
+
+    .hero {
+      background: url('https://images.unsplash.com/photo-1618495379435-0fa9ee063af9?auto=format&fit=crop&w=1470&q=80') center center/cover no-repeat;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-shadow: 1px 1px 4px #000;
+      transition: filter 0.3s;
+    }
+    body.dark-mode .hero {
+      filter: brightness(0.6);
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: bold;
+    }
+
+    .section-title {
+      margin-top: 50px;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    .icon-box {
+      text-align: center;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background-color: #fff;
+      transition: transform 0.3s ease, background-color 0.3s;
+      height: 100%;
+    }
+    body.dark-mode .icon-box {
+      background-color: #2a2a2a;
+      box-shadow: 0 0 15px rgba(255, 69, 0, 0.6);
+    }
+
+    .icon-box:hover {
+      transform: translateY(-5px);
+    }
+
+    .icon-box img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      transition: filter 0.3s;
+    }
+    body.dark-mode .icon-box img {
+      filter: brightness(0.8);
+    }
+
+    /* Navbar button */
+    #modeToggleBtn {
+      cursor: pointer;
+      border: none;
+      background: none;
+      color: inherit;
+      font-size: 1.3rem;
+      margin-left: 15px;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .icon-box img {
+        height: 150px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="bg-image" aria-hidden="true"></div>
+
+ <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
+  <div class="container-fluid d-flex justify-content-between align-items-center w-100">
+    
+    <!-- سمت چپ: لوگو -->
+    <a class="navbar-brand fw-bold" href="#">DefenseTips</a>
+
+    <!-- وسط: دکمه حالت شب/روز -->
+    <div class="text-center mx-auto">
+      <button id="modeBtn" class="btn btn-sm btn-outline-light rounded-pill" aria-label="Toggle dark mode">🌙</button>
+    </div>
+
+    <!-- سمت راست: دکمه برگشت به خانه -->
+    <a href="index.html" class="btn btn-outline-light rounded-pill px-4 py-2">
+      ⬅ Back to Home
+    </a>
+  </div>
+</nav>
+
+
+  <!-- Hero Section -->
+  <section class="hero text-center">
+    <h1>🔥 Fire Safety Tips</h1>
+  </section>
+
+  <div class="container mt-5 mb-5" id="fire">
+    <!-- Before Fire -->
+    <h2 class="section-title text-danger">Before a Fire</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="icon-box">
+          <img src="Fire/6002354626411739363.jpg" alt="Plan Escape" />
+          <h5 class="mt-3">Plan Escape Routes</h5>
+          <p>Make sure every family member knows two ways out of each room. Practice drills regularly.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="icon-box">
+          <img src="Fire/6002325154346154332.jpg" alt="Smoke Alarms" />
+          <h5 class="mt-3">Install Smoke Alarms</h5>
+          <p>Put alarms on every level and test them monthly. Change batteries twice a year.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="icon-box">
+          <img src="Fire/6002179649444100491.jpg" alt="Fire Extinguisher" />
+          <h5 class="mt-3">Check Fire Extinguishers</h5>
+          <p>Keep extinguishers handy, especially in the kitchen. Learn how to use them correctly.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- During Fire -->
+    <h2 class="section-title text-warning mt-5">During a Fire</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="icon-box">
+          <img src="Fire/5842743754677662910.jpg " alt="Stay Low" />
+          <h5 class="mt-3">Stay Low</h5>
+          <p>Smoke rises. Stay close to the ground and crawl under smoke to get out safely.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="icon-box">
+          <img src="Fire/6002415378724141396.jpg" alt="Check Doors" />
+          <h5 class="mt-3">Check Doors</h5>
+          <p>If the door is hot, do not open it. Use another exit. If trapped, call for help from a window.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="icon-box">
+          <img src="Fire/6002343373597424072.jpg" alt="Don't Re-enter" />
+          <h5 class="mt-3">Don’t Re-enter</h5>
+          <p>Once out, stay out. Never return into a burning building for anything.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- After Fire -->
+    <h2 class="section-title text-success mt-5">After a Fire</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="icon-box">
+          <img src="Fire/6002525901117569384.jpg" alt="Call Authorities" />
+          <h5 class="mt-3">Contact Authorities</h5>
+          <p>Call emergency services. Do not enter the building until cleared by professionals.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="icon-box">
+          <img src="Fire/6002601441002371555.jpg" alt="Seek Help" />
+          <h5 class="mt-3">Seek Support</h5>
+          <p>Find help for trauma, insurance claims, and temporary shelter if needed.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="icon-box">
+          <img src="Fire/6002670736004725134.jpg" alt="Rebuild Safely" />
+          <h5 class="mt-3">Rebuild Safely</h5>
+          <p>Only begin repairs after the area is fully safe and documented by insurance.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+   <!-- Scripts -->
+  <script>
+    const modeBtn = document.getElementById("modeBtn");
+    modeBtn.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      if(document.body.classList.contains("dark-mode")) {
+        modeBtn.textContent = "☀️";
+        modeBtn.setAttribute("aria-label", "Switch to light mode");
+      } else {
+        modeBtn.textContent = "🌙";
+        modeBtn.setAttribute("aria-label", "Switch to dark mode");
+      }
+    });
+  </script>
+</body>
+</html>
